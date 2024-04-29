@@ -1,3 +1,3 @@
-console.log('hello world');
+/*console.log('hello world');
 
-// instal Node.js
+// instal Node.js*/
