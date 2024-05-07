@@ -1,0 +1,28 @@
+body {
+    background-image: url(Titania.png); 
+    color: rgb(255, 255, 255);
+    text-align: center;
+}
+a:link {
+    color:white;
+}
+a:hover {
+    color:blue;
+}
+table {
+    border-collapse: collapse;
+    border: 4px solid white;
+    margin: auto;
+}
+th {
+    border: 3px solid white;
+    font-size: large;
+}
+td { 
+    border: 3px solid white;
+    text-align: center;
+    font-size: medium;
+}
+h1{
+    font-size: x-large;
+}
