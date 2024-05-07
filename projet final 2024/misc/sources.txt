@@ -1,4 +1,4 @@
-//Main source (HTML & CSS): example documents 
+//Main source: example documents 
 
 //Secondary source: visual code description
 
