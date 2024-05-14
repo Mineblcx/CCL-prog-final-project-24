@@ -1,2 +1,4 @@
-body{background-color: darkgray;}
-
+body{background-color: black ; text-align: center; margin-top: 20%; font-size: 100px;} 
+a:link{color:greenyellow;}
+a:hover{color:yellow;}
+a:visited{color: red;}
