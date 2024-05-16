@@ -1,93 +1,47 @@
-/* @format */
-
-// Define player objects
+//play area
 const canvas = document.getElementById("gameCanvas");
 
-const player1 = {
-	name: "Red",
-	gold: 100,
-	units: [],
-};
+// Unit Legend
 
-const player2 = {
-	name: "Blue",
-	gold: 100,
-	units: [],
-};
-
-// Define unit class
 class Unit {
-	constructor(name, cost, damage, health, speed) {
-		this.name = name;
-		this.cost = cost;
-		this.damage = damage;
-		this.health = health;
-		this.speed = speed;
-	}
+  constructor(name, hp, atkdmg, atkspd, atkrng, WalkSPD, cost, killgain, spwammount, spwtimer) {
+    //name, Health Points, Attack Dammage, Attack speed, Attack range (pixels), Walk speed(Pixels per seconds), cost, money gained from enemy kills, spawn ammount, spawn timer
+    this.name = name;
+    this.hp = hp;
+    this.atkdmg = atkdmg;
+    this.atkspd = atkspd * 1000;
+    this.atkrng = atkrng;
+    this.WalkSPD = WalkSPD;
+    this.cost = cost;
+    this.killgain = killgain;
+    this.spwammount = spwammount;
+    this.spwtimer = spwtimer * 1000;
+  }
 }
-// Create some sample units
-const Newbie = new Unit("Newbie", 10, 5, 25, 100);
-const Knight = new Unit("Knight", 20, 10, 50, 75);
-const Assasin = new Unit("Assasin", 25, 15, 75, 150);
-const Sword_Master = new Unit("Sword Master", 40, 25, 125, 50);
-// Function to buy units
-function buyUnit(player, unit) {
-	if (player.gold >= unit.cost) {
-		player.gold -= unit.cost;
-		player.units.push(unit);
-		console.log(`${player.name} bought a ${unit.name}`);
-	} else {
-		console.log(
-			`${player.name} does not have enough gold to buy a ${unit.name}`
-		);
-	}
+class Gold {
+  constructor(amountper, level, price) {
+    this.amountper = amountper * 1000;
+    this.level = level;
+    this.price = price;
+  }
 }
-document.addEventListener("keydown", function (event) {
-	if (event.key === "1") {
-		console.log(buyUnit(player1, Newbie));
-	} else if (event.key === "!") {
-		console.log(buyUnit(player2, Newbie));
-	} else if (event.key === "2") {
-		console.log(buyUnit(player1, Knight));
-	} else if (event.key === "@") {
-		console.log(buyUnit(player2, Knight));
-	} else if (event.key === "3") {
-		console.log(buyUnit(player1, Assasin));
-	} else if (event.key === "#") {
-		console.log(buyUnit(player2, Assasin));
-	} else if (event.key === "4") {
-		console.log(buyUnit(player1, Sword_Master));
-	} else if (event.key === "$") {
-		console.log(buyUnit(player2, Sword_Master));
-	} else if (event.key === "b" || event.key === "B") {
-		console.log(battle(player1, player2));
-	}
-});
 
-// Simulate a battle
-function battle(player1, player2) {
-	let player1TotalDamage = player1.units.reduce(
-		(total, unit) => total + unit.damage,
-		0
-	);
-	let player2TotalDamage = player2.units.reduce(
-		(total, unit) => total + unit.damage,
-		0
-	);
+// Unit Library
+const Newbie = new Unit("Newbie", 1000, 200, 1.5, 50, 100, 50, 10, 5, 3);
+const Knight = new Unit("Knight", 1500, 300, 1.5, 40, 60, 125, 45, 3, 5);
+const Assasin = new Unit("Assasin", 1250, 400, 0.75, 35, 150, 500, 25, 5, 4);
+const Sword = new Unit("Sword Master", 4000, 500, 1, 75, 125, 1500, 350, 2, 7.5);
 
-	if (player1TotalDamage == player2TotalDamage) {
-		console.log(`The battle is a Draw!`);
-		console.log("Blue did", player2TotalDamage, "Dammage");
-		console.log("Red did", player1TotalDamage, "Dammage");
-	} else if (player1TotalDamage > player2TotalDamage) {
-		console.log(`${player1.name} wins the battle!`);
-		console.log("Blue did", player2TotalDamage, "Dammage");
-		console.log("Red did", player1TotalDamage, "Dammage");
-	} else if (player2TotalDamage > player1TotalDamage) {
-		console.log(`${player2.name} wins the battle!`);
-		console.log("Blue did", player2TotalDamage, "Dammage");
-		console.log("Red did", player1TotalDamage, "Dammage");
-	} else {
-		console.log("error");
-	}
-}
+
+//Cash library
+const Level_0 = new Gold(5, 0, 0);
+const Level_1 = new Gold(10, 1, 150);
+const Level_2 = new Gold(25, 2, 450);
+const Level_3 = new Gold(35, 3, 1125);
+const Level_4 = new Gold(40, 4, 1050);
+const Level_5 = new Gold(50, 5, 2000);
+
+// other libraries
+const baseHP = 30000;
+var time1 = new Date();
+delta_time = time1.getTime();
