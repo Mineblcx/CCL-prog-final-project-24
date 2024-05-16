@@ -1,7 +1,43 @@
 //play area
 const canvas = document.getElementById("gameCanvas");
 
-// Unit Legend
+//players
+var player_1 = {
+  name: "Blue Player",
+  Gold_Ammount: {
+    if(Level_0 = False) {
+      if (Level_1 = False) {
+        if (Level_2 = False) {
+          if (Level_3 = False) {
+            if (Level_4 = False) {
+              Gold_Ammount = Level_5
+            }
+            else {
+              Level_4
+            }
+          }
+          else {
+            Level_3
+          }
+
+        }
+        else {
+          Level_2
+        }
+      }
+      else {
+        Level_1
+      }
+      else {
+      //
+    }
+    }
+
+  },
+};
+
+
+// Library Legends
 
 class Unit {
   constructor(name, hp, atkdmg, atkspd, atkrng, WalkSPD, cost, killgain, spwammount, spwtimer) {
@@ -19,9 +55,8 @@ class Unit {
   }
 }
 class Gold {
-  constructor(amountper, level, price) {
+  constructor(amountper, price) {
     this.amountper = amountper * 1000;
-    this.level = level;
     this.price = price;
   }
 }
@@ -34,12 +69,12 @@ const Sword = new Unit("Sword Master", 4000, 500, 1, 75, 125, 1500, 350, 2, 7.5)
 
 
 //Cash library
-const Level_0 = new Gold(5, 0, 0);
-const Level_1 = new Gold(10, 1, 150);
-const Level_2 = new Gold(25, 2, 450);
-const Level_3 = new Gold(35, 3, 1125);
-const Level_4 = new Gold(40, 4, 1050);
-const Level_5 = new Gold(50, 5, 2000);
+const Level_0 = new Gold(5, 0);
+const Level_1 = new Gold(10, 150);
+const Level_2 = new Gold(25, 450);
+const Level_3 = new Gold(35, 1125);
+const Level_4 = new Gold(40, 1050);
+const Level_5 = new Gold(50, 2000);
 
 // other libraries
 const baseHP = 30000;
