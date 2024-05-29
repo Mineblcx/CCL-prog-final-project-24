@@ -6,12 +6,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Miragine Wars Remastered Game</title>
   <link rel="stylesheet" href="Game.css">
+  <script>
+    // Declare the variable in the HTML file
+    var gameStatus = "Stopped";
+
+    function GameLoad(x) {
+      if (x === 'on') {
+        gameStatus = "Running";
+        console.log(gameStatus);
+      } else {
+        gameStatus = "Stopped";
+        console.log(gameStatus);
+      }
+    }
+  </script>
 </head>
 
 <body onload="GameLoad('on')">
   <canvas id="gameCanvas" width="3840" height="529"></canvas>
   <script src="game.js"></script>
-  <button onclick="ButtonTest()"></button>
+  <button onclick="ButtonTest()">Test it</button>
+  <button onclick="Moneyup()">Up gold gen</button>
 </body>
 
 </html>
