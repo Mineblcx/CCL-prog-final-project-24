@@ -1,32 +1,155 @@
+<!-- @format -->
+
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0"
+		/>
+		<title>Miragine Wars Remastered Game</title>
+		<link
+			rel="stylesheet"
+			href="Game.css"
+		/>
+		<script>
+			// Declare the variable in the HTML file
+			var gameStatus = "Stopped";
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Miragine Wars Remastered Game</title>
-  <link rel="stylesheet" href="Game.css">
-  <script>
-    // Declare the variable in the HTML file
-    var gameStatus = "Stopped";
+			function GameLoad(x) {
+				if (x === "on") {
+					gameStatus = "Running";
+					console.log(gameStatus);
+				} else {
+					gameStatus = "Stopped";
+					console.log(gameStatus);
+				}
+			}
+		</script>
+	</head>
 
-    function GameLoad(x) {
-      if (x === 'on') {
-        gameStatus = "Running";
-        console.log(gameStatus);
-      } else {
-        gameStatus = "Stopped";
-        console.log(gameStatus);
-      }
-    }
-  </script>
-</head>
-
-<body onload="GameLoad('on')">
-  <canvas id="gameCanvas" width="3840" height="529"></canvas>
-  <script src="game.js"></script>
-  <button onclick="ButtonTest()">Test it</button>
-  <button onclick="Moneyup()">Up gold gen</button>
-</body>
-
+	<body onload="GameLoad('on')">
+		<script src="game.js"></script>
+		<table>
+			<thead>
+				<tr>
+					<th colspan="9">Game</th>
+				</tr>
+			</thead>
+			<tr>
+				<th
+					id="players"
+					colspan="4"
+				>
+					Blue Team
+				</th>
+				<th></th>
+				<th
+					id="players"
+					colspan="4"
+				>
+					Red Team
+				</th>
+			</tr>
+			<tbody>
+				<tr>
+					<th>Gold Generation</th>
+					<th>Gold Ammount</th>
+					<th>Base Health</th>
+					<th>Troop Ammount</th>
+					<th></th>
+					<th>Troop Ammount</th>
+					<th>Base Health</th>
+					<th>Gold Ammount</th>
+					<th>Gold Generation</th>
+				</tr>
+				<tr>
+					<td id="moneylvl_blue">0</td>
+					<td id="money_blue">0</td>
+					<td id="base_hp_blue">0</td>
+					<td id="troop_blue">0</td>
+					<td></td>
+					<td id="troop_red">0</td>
+					<td id="base_hp_red">0</td>
+					<td id="money_red">0</td>
+					<td id="moneylvl_red">0</td>
+				</tr>
+				<tr>
+					<td><button onclick="moneyup_blue()">Upgrade money generation</button></td>
+					<td></td>
+					<td><button>Heal Base</button></td>
+					<td>
+						|
+						<p>V</p>
+					</td>
+					<td></td>
+					<td>
+						|
+						<p>V</p>
+					</td>
+					<td><button>Heal Base</button></td>
+					<td></td>
+					<td><button onclick="moneyup_red()">Upgrade money generation</button></td>
+				</tr>
+        <tr>
+          <td>Damage</td>
+          <td>Cost</td>
+          <td>health</td>
+          <td>Name</td>
+          <td> </td>
+          <td>Name</td>
+          <td>Health</td>
+          <td>Cost</td>
+          <td>Damage</td>
+        </tr>
+        <tr>
+          <td> </td>
+          <td> </td>
+          <td> </td>
+          <td>Newbie</td>
+          <td> </td>
+          <td>Newbie</td>
+          <td> </td>
+          <td> </td>
+          <td> </td>
+        </tr>
+        <tr>
+          <td> </td>
+          <td> </td>
+          <td> </td>
+          <td>Knight</td>
+          <td> </td>
+          <td>Knight</td>
+          <td> </td>
+          <td> </td>
+          <td> </td>
+        </tr>
+        <tr>
+          <td> </td>
+          <td> </td>
+          <td> </td>
+          <td>Assasin</td>
+          <td> </td>
+          <td>Assasin</td>
+          <td> </td>
+          <td> </td>
+          <td> </td>
+        </tr>
+        <tr>
+          <td> </td>
+          <td> </td>
+          <td> </td>
+          <td>Sword Master</td>
+          <td> </td>
+          <td>Sword Master</td>
+          <td> </td>
+          <td> </td>
+          <td> </td>
+        </tr>
+			</tbody>
+		</table>
+		<button onclick="ButtonTest()">Test it</button>
+		<button onclick="Moneyup()">Up gold gen</button>
+	</body>
 </html>

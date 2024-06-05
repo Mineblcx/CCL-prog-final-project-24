@@ -1,2 +1,30 @@
 body{background-color: darkgray; margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px;}
-canvas{background-image: url(Art/BackGround.jpg);}
+table {
+    border-collapse: collapse;
+    border: 4px solid black;
+    margin: auto;
+}
+thead {
+    th { 
+    border: 3px solid black;
+    font-size: xx-large;
+    text-align: center;
+}
+}
+tbody{
+    th{
+        border: 3px solid black;
+        font-size: large;
+        text-align: center;
+    }
+    td {
+        border: 3px solid black;
+        font-size: medium;
+        text-align: center;
+    }
+}
+#players{ 
+    border: 3px solid black;
+    font-size: x-large;
+    text-align: center;
+}
