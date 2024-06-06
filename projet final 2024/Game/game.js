@@ -1,43 +1,63 @@
+/** @format */
+
 //play area
 console.log("should work");
 
-
 // While loop with time measurement
 while (gameStatus === "Running") {
-  let currentTime = new Date();
-  let elapsedTime = currentTime.getTime() - delta_time;
+	let currentTime = new Date();
+	let elapsedTime = currentTime.getTime() - delta_time;
 
-  // Update game logic based on elapsed time
-  //...
+	// Update game logic based on elapsed time
+	//...
 
-  // Update delta_time for the next frame
-  delta_time = currentTime.getTime();
+	// Update delta_time for the next frame
+	delta_time = currentTime.getTime();
 }
-
-  function ButtonTest() {
-    Player_1.buyNewbie();
-  }
-
+let Newbie_amnt_B = 0;
+let Knight_amnt_B = 0;
+let Assasin_amnt_B = 0;
+let SwordMaster_amnt_B = 0;
+let Newbie_amnt_R = 0;
+let Knight_amnt_R = 0;
+let Assasin_amnt_R = 0;
+let SwordMaster_amnt_R = 0;
+let Health_Troops_B = 0;
+let Health_Base_B = 10000;
+let Health_Troops_R = 0;
+let Health_Base_R = 10000;
 class Unit {
-  constructor(name, hp, atkdmg, atkspd, atkrng, WalkSPD, cost, killgain, spwammount, spwtimer) {
-    //name, Health Points, Attack Dammage, Attack speed, Attack range (pixels), Walk speed(Pixels per seconds), cost, money gained from enemy kills, spawn ammount, spawn timer
-    this.name = name;
-    this.hp = hp;
-    this.atkdmg = atkdmg;
-    this.atkspd = atkspd * 1000;
-    this.atkrng = atkrng;
-    this.WalkSPD = WalkSPD;
-    this.cost = cost;
-    this.killgain = killgain;
-    this.spwammount = spwammount;
-    this.spwtimer = spwtimer * 1000;
-  }
+	constructor(
+		name,
+		hp,
+		atkdmg,
+		cost,
+		spwammount,
+	) {
+		//name, Health Points, Attack Dammage, Attack speed, Attack range (pixels), Walk speed(Pixels per seconds), cost, money gained from enemy kills, spawn ammount, spawn timer
+		this.name = name;
+		this.hp = hp;
+		this.atkdmg = atkdmg;
+		this.cost = cost;
+		this.spwammount = spwammount;
+	}
 }
+const Newbie = new Unit("Newbie", 500, 200, 50, 5);
+const Knight = new Unit("Knight", 1500, 300, 125, 3);
+const Assasin = new Unit("Assasin", 750, 400, 500, 5);
+const Sword = new Unit(
+	"Sword Master",
+	4000,
+	100,
+	1500,
+	2
+);
+
 class Gold {
-  constructor(amountper, price) {
-    this.amountper = amountper;
-    this.price = price;
-  }
+	constructor(amountper, price) {
+		this.amountper = amountper;
+		this.price = price;
+	}
 }
 const Level_0_stats = new Gold(5, 0);
 const Level_1_stats = new Gold(10, 150);
@@ -57,171 +77,278 @@ let Level_4_red = "UnBought";
 let Level_5_red = "UnBought";
 
 // Unit Library
-const Newbie = new Unit("Newbie", 1000, 200, 1.5, 50, 100, 50, 10, 5, 3);
-const Knight = new Unit("Knight", 1500, 300, 1.5, 40, 60, 125, 45, 3, 5);
-const Assasin = new Unit("Assasin", 1250, 400, 0.75, 35, 150, 500, 25, 5, 4);
-const Sword = new Unit("Sword Master", 4000, 500, 1, 75, 125, 1500, 350, 2, 7.5);
 
 class Player_1 {
-  constructor(name, gold, troopamnt, color) {
-    this.name = name;
-    this.gold = gold;
-    this.troopamnt = troopamnt;
-    this.color = color;
-  }
+	constructor(name, gold, troopamnt, color) {
+		this.name = name;
+		this.gold = gold;
+		this.troopamnt = troopamnt;
+		this.color = color;
+	}
 
-  buyNewbie() {
-    if (this.gold >= Newbie.cost) {
-      this.gold -= Newbie.cost;
-      this.troopamnt += Newbie.spwammount;
-    } else {
-      console.log(`${this.name} does not have enough gold to buy Newbies.`);
-    }
-  }
-  buyKnight() {
-    if (this.gold >= Knight.cost) {
-      this.gold -= Knight.cost;
-      this.troopamnt += Knight.spwammount;
-    } else {
-      console.log(`${this.name} does not have enough gold to buy Newbies.`);
-    }
-  }
-  buyAssasin() {
-    if (this.gold >= Assasin.cost) {
-      this.gold -= Assasin.cost;
-      this.troopamnt += Assasin.spwammount;
-    } else {
-      console.log(`${this.name} does not have enough gold to buy Newbies.`);
-    }
-  }
-  buySword() {
-    if (this.gold >= Sword.cost) {
-      this.gold -= Sword.cost;
-      this.troopamnt += Sword.spwammount;
-    } else {
-      console.log(`${this.name} does not have enough gold to buy Newbies.`);
-    }
-  }
+	buyNewbie() {
+		if (this.gold >= Newbie.cost) {
+			this.gold -= Newbie.cost;
+			this.troopamnt += Newbie.hp * Newbie.spwammount;
+      Newbie_amnt_B += Newbie.spwammount;
+      Health_Troops_B += Newbie.hp * Newbie.spwammount;
+      
+		} else {
+			let originaltext = document.getElementById("costN_B").innerHTML;
+			document.getElementById("costN_B").innerHTML = "Not Enough";
+			setTimeout(() => {
+				document.getElementById("costN_B").innerHTML = originaltext;
+			}, 2500);
+		}
+	}
+	buyKnight() {
+		if (this.gold >= Knight.cost) {
+			this.gold -= Knight.cost;
+			this.troopamnt += Knight.spwammount;
+      Knight_amnt_B += Knight.spwammount;
+		} else {
+			let originaltext = document.getElementById("costK_B").innerHTML;
+			document.getElementById("costK_B").innerHTML = "Not Enough";
+			setTimeout(() => {
+				document.getElementById("costK_B").innerHTML = originaltext;
+			}, 2500);
+		}
+	}
+	buyAssasin() {
+		if (this.gold >= Assasin.cost) {
+			this.gold -= Assasin.cost;
+			this.troopamnt += Assasin.spwammount;
+      Assasin_amnt_B += Assasin.spwammount;
+		} else {
+			let originaltext = document.getElementById("costA_B").innerHTML;
+			document.getElementById("costA_B").innerHTML = "Not Enough";
+			setTimeout(() => {
+				document.getElementById("costA_B").innerHTML = originaltext;
+			}, 2500);
+		}
+	}
+	buySword() {
+		if (this.gold >= Sword.cost) {
+			this.gold -= Sword.cost;
+			this.troopamnt += Sword.spwammount;
+      SwordMaster_amnt_B += Sword.spwammount;
+		} else {
+			let originaltext = document.getElementById("costSM_B").innerHTML;
+			document.getElementById("costSM_B").innerHTML = "Not Enough";
+			setTimeout(() => {
+				document.getElementById("costSM_B").innerHTML = originaltext;
+			}, 2500);
+		}
+	}
 
-  generateMoney(moneyRate) {
-    this.gold += moneyRate;
-    console.log(`${this.name} ${moneyRate}G/s. Total gold: ${this.gold}. Total Troops: ${this.troopamnt}.`);
-    document.getElementById("money_blue").innerHTML = this.gold;
-}
-
+	generateMoney(moneyRate) {
+		this.gold += moneyRate;
+		console.log(
+			`${this.name} ${moneyRate}G/s. Total gold: ${this.gold}. Total Troops: ${this.troopamnt}.`
+		);
+		document.getElementById("money_blue").innerHTML = this.gold;
+	}
 }
 class Player_2 {
-  constructor(name, gold, troopamnt, color) {
-    this.name = name;
-    this.gold = gold;
-    this.troopamnt = troopamnt;
-    this.color = color;
-  }
+	constructor(name, gold, troopamnt, color) {
+		this.name = name;
+		this.gold = gold;
+		this.troopamnt = troopamnt;
+		this.color = color;
+	}
 
-  buyNewbie() {
-    if (this.gold >= Newbie.cost) {
-      this.gold -= Newbie.cost;
-      this.troopamnt += Newbie.spwammount;
-    } else {
-      console.log(`${this.name} does not have enough gold to buy Newbies.`);
-    }
-  }
-  buyKnight() {
-    if (this.gold >= Knight.cost) {
-      this.gold -= Knight.cost;
-      this.troopamnt += Knight.spwammount;
-    } else {
-      console.log(`${this.name} does not have enough gold to buy Newbies.`);
-    }
-  }
-  buyAssasin() {
-    if (this.gold >= Assasin.cost) {
-      this.gold -= Assasin.cost;
-      this.troopamnt += Assasin.spwammount;
-    } else {
-      console.log(`${this.name} does not have enough gold to buy Newbies.`);
-    }
-  }
-  buySword() {
-    if (this.gold >= Sword.cost) {
-      this.gold -= Sword.cost;
-      this.troopamnt += Sword.spwammount;
-    } else {
-      console.log(`${this.name} does not have enough gold to buy Newbies.`);
-    }
-  }
+	buyNewbie() {
+		if (this.gold >= Newbie.cost) {
+			this.gold -= Newbie.cost;
+			this.troopamnt += Newbie.spwammount;
+		} else {
+			let originaltext = document.getElementById("costN_R").innerHTML;
+			document.getElementById("costN_R").innerHTML = "Not Enough";
+			setTimeout(() => {
+				document.getElementById("costN_R").innerHTML = originaltext;
+			}, 2500);
+		}
+	}
+	buyKnight() {
+		if (this.gold >= Knight.cost) {
+			this.gold -= Knight.cost;
+			this.troopamnt += Knight.spwammount;
+		} else {
+			let originaltext = document.getElementById("costK_R").innerHTML;
+			document.getElementById("costK_R").innerHTML = "Not Enough";
+			setTimeout(() => {
+				document.getElementById("costK_R").innerHTML = originaltext;
+			}, 2500);
+		}
+	}
+	buyAssasin() {
+		if (this.gold >= Assasin.cost) {
+			this.gold -= Assasin.cost;
+			this.troopamnt += Assasin.spwammount;
+		} else {
+			let originaltext = document.getElementById("costA_R").innerHTML;
+			document.getElementById("costA_R").innerHTML = "Not Enough";
+			setTimeout(() => {
+				document.getElementById("costA_R").innerHTML = originaltext;
+			}, 2500);
+		}
+	}
+	buySword() {
+		if (this.gold >= Sword.cost) {
+			this.gold -= Sword.cost;
+			this.troopamnt += Sword.spwammount;
+		} else {
+			let originaltext = document.getElementById("costSM_R").innerHTML;
+			document.getElementById("costSM_R").innerHTML = "Not Enough";
+			setTimeout(() => {
+				document.getElementById("costSM_R").innerHTML = originaltext;
+			}, 2500);
+		}
+	}
 
-  generateMoney(moneyRate) {
-    this.gold += moneyRate;
-    console.log(`${this.name} ${moneyRate}G/s. Total gold: ${this.gold}. Total Troops: ${this.troopamnt}.`);
-    document.getElementById("money_red").innerHTML = this.gold;
+	generateMoney(moneyRate) {
+		this.gold += moneyRate;
+		console.log(
+			`${this.name} ${moneyRate}G/s. Total gold: ${this.gold}. Total Troops: ${this.troopamnt}.`
+		);
+		document.getElementById("money_red").innerHTML = this.gold;
+	}
 }
-
+function BuyN_Blue() {
+	Blue.buyNewbie();
 }
-
+function BuyK_Blue() {
+	Blue.buyKnight();
+}
+function BuyA_Blue() {
+	Blue.buyAssasin();
+}
+function BuySM_Blue() {
+	Blue.buySword();
+}
+function BuyN_Red() {
+	Red.buyNewbie();
+}
+function BuyK_Red() {
+	Red.buyKnight();
+}
+function BuyA_Red() {
+	Red.buyAssasin();
+}
+function BuySM_Red() {
+	Red.buySword();
+}
 function moneyup_blue() {
-  if (Level_1_Blue === "UnBought") {
-    Level_1_Blue = "Bought";
-    console.log(Level_1_Blue, "money upgrade 1");
-  } else if (Level_2_Blue === "UnBought") {
-    Level_2_Blue = "Bought";
-    console.log(Level_2_Blue, "money upgrade 2");
-  } else if (Level_3_Blue === "UnBought") {
-    Level_3_Blue = "Bought";
-    console.log(Level_3_Blue, "money upgrade 3");
-  } else if (Level_4_Blue === "UnBought") {
-    Level_4_Blue = "Bought";
-    console.log(Level_4_Blue, "money upgrade 4");
-  } else if (Level_5_Blue === "UnBought") {
-    Level_5_Blue = "Bought";
-    console.log(Level_5_Blue, "money upgrade 5");
-  }}
-  function moneyup_red() {
-    if (Level_1_red === "UnBought") {
-      Level_1_red = "Bought";
-      console.log(Level_1_red, "money upgrade 1");
-    } else if (Level_2_red === "UnBought") {
-      Level_2_red = "Bought";
-      console.log(Level_2_red, "money upgrade 2");
-    } else if (Level_3_red === "UnBought") {
-      Level_3_red = "Bought";
-      console.log(Level_3_red, "money upgrade 3");
-    } else if (Level_4_red === "UnBought") {
-      Level_4_red = "Bought";
-      console.log(Level_4_red, "money upgrade 4");
-    } else if (Level_5 === "UnBought") {
-      Level_5_red = "Bought";
-      console.log(Level_5_red, "money upgrade 5");
-    }}
+	if (Level_1_Blue === "UnBought" && Level_1_stats.price <= Blue.gold) {
+		Level_1_Blue = "Bought";
+		Blue.gold -= Level_1_stats.price;
+		document.getElementById("moneylvl_blue").innerHTML = "1";
+		console.log(Level_1_Blue, "money upgrade 1");
+	} else if (Level_2_Blue === "UnBought" && Level_2_stats.price <= Blue.gold) {
+		Level_2_Blue = "Bought";
+		Blue.gold -= Level_2_stats.price;
+		document.getElementById("moneylvl_blue").innerHTML = "2";
+		console.log(Level_2_Blue, "money upgrade 2");
+	} else if (Level_3_Blue === "UnBought" && Level_3_stats.price <= Blue.gold) {
+		Level_3_Blue = "Bought";
+		Blue.gold -= Level_3_stats.price;
+		document.getElementById("moneylvl_blue").innerHTML = "3";
+		console.log(Level_3_Blue, "money upgrade 3");
+	} else if (Level_4_Blue === "UnBought" && Level_4_stats.price <= Blue.gold) {
+		Level_4_Blue = "Bought";
+		Blue.gold -= Level_4_stats.price;
+		document.getElementById("moneylvl_blue").innerHTML = "4";
+		console.log(Level_4_Blue, "money upgrade 4");
+	} else if (Level_5_Blue === "UnBought" && Level_5_stats.price <= Blue.gold) {
+		Level_5_Blue = "Bought";
+		Blue.gold -= Level_5_stats.price;
+		document.getElementById("moneylvl_blue").innerHTML = "5";
+		console.log(Level_5_Blue, "money upgrade 5");
+	} else {
+		let originaltext = document.getElementById("monup_b").innerHTML;
+		document.getElementById("monup_b").innerHTML =
+			"Not Enough Gold | Lvl1 - 150 | Lvl2 - 450 | Lvl3 - 1125 | Lvl4 - 1050 | Lvl5 -  2000";
+		setTimeout(() => {
+			document.getElementById("monup_b").innerHTML = originaltext;
+		}, 2500);
+	}
+}
+function moneyup_red() {
+	if (Level_1_red === "UnBought" && Level_1_stats.price <= Red.gold) {
+		Level_1_red = "Bought";
+		Red.gold -= Level_1_stats.price;
+		console.log(Level_1_red, "money upgrade 1");
+	} else if (Level_2_red === "UnBought" && Level_2_stats.price <= Red.gold) {
+		Level_2_red = "Bought";
+		Red.gold -= Level_2_stats.price;
+		console.log(Level_2_red, "money upgrade 2");
+	} else if (Level_3_red === "UnBought" && Level_3_stats.price <= Red.gold) {
+		Level_3_red = "Bought";
+		Red.gold -= Level_3_stats.price;
+		console.log(Level_3_red, "money upgrade 3");
+	} else if (Level_4_red === "UnBought" && Level_4_stats.price <= Red.gold) {
+		Level_4_red = "Bought";
+		Red.gold -= Level_4_stats.price;
+		console.log(Level_4_red, "money upgrade 4");
+	} else if (Level_5_red === "UnBought" && Level_5_stats.price <= Red.gold) {
+		Level_5_red = "Bought";
+		Red.gold -= Level_5_stats.price;
+		console.log(Level_5_red, "money upgrade 5");
+	} else {
+		let originaltext = document.getElementById("monup_r").innerHTML;
+		document.getElementById("monup_r").innerHTML =
+			"Not Enough Gold | Lvl1 - 150 | Lvl2 - 450 | Lvl3 - 1125 | Lvl4 - 1050 | Lvl5 -  2000";
+		setTimeout(() => {
+			document.getElementById("monup_r").innerHTML = originaltext;
+		}, 2500);
+	}
+}
 //players
 const Blue = new Player_1("Blue", 0, 0, "Blue");
 const Red = new Player_2("Red", 0, 0, "Red");
 // Generate money every second
 setInterval(() => {
-  if (Level_1_Blue === "UnBought") {
-    Blue.generateMoney(Level_0_stats.amountper);
-  } else if (Level_2_Blue === "UnBought") {
-    Blue.generateMoney(Level_1_stats.amountper);
-  } else if (Level_3_Blue === "UnBought") {
-    Blue.generateMoney(Level_2_stats.amountper);
-  } else if (Level_4_Blue === "UnBought") {
-    Blue.generateMoney(Level_3_stats.amountper);
-  } else if (Level_5_Blue === "UnBought") {
-    Blue.generateMoney(Level_4_stats.amountper);
-  } else { Blue.generateMoney(Level_5_stats.amountper); }
-  if (Level_1_red === "UnBought") {
-    Red.generateMoney(Level_0_stats.amountper);
-  } else if (Level_2_red === "UnBought") {
-    Red.generateMoney(Level_1_stats.amountper);
-  } else if (Level_3_red === "UnBought") {
-    Red.generateMoney(Level_2_stats.amountper);
-  } else if (Level_4_red === "UnBought") {
-    Red.generateMoney(Level_3_stats.amountper);
-  } else if (Level_5_red === "UnBought") {
-    Red.generateMoney(Level_4_stats.amountper);
-  } else { Red.generateMoney(Level_5_stats.amountper); }
+	if (Level_1_Blue === "UnBought") {
+		Blue.generateMoney(Level_0_stats.amountper);
+	} else if (Level_2_Blue === "UnBought") {
+		Blue.generateMoney(Level_1_stats.amountper);
+	} else if (Level_3_Blue === "UnBought") {
+		Blue.generateMoney(Level_2_stats.amountper);
+	} else if (Level_4_Blue === "UnBought") {
+		Blue.generateMoney(Level_3_stats.amountper);
+	} else if (Level_5_Blue === "UnBought") {
+		Blue.generateMoney(Level_4_stats.amountper);
+	} else {
+		Blue.generateMoney(Level_5_stats.amountper);
+	}
+	if (Level_1_red === "UnBought") {
+		Red.generateMoney(Level_0_stats.amountper);
+	} else if (Level_2_red === "UnBought") {
+		Red.generateMoney(Level_1_stats.amountper);
+	} else if (Level_3_red === "UnBought") {
+		Red.generateMoney(Level_2_stats.amountper);
+	} else if (Level_4_red === "UnBought") {
+		Red.generateMoney(Level_3_stats.amountper);
+	} else if (Level_5_red === "UnBought") {
+		Red.generateMoney(Level_4_stats.amountper);
+	} else {
+		Red.generateMoney(Level_5_stats.amountper);
+	}
+	document.getElementById("troop_blue").innerHTML = Blue.troopamnt;
+	document.getElementById("troop_red").innerHTML = Red.troopamnt;
+  document.getElementById("Troopamnt_type_N_B").innerHTML = "Newbies: " + Newbie_amnt_B;
+  document.getElementById("Troopamnt_type_K_B").innerHTML = "Knigts: " + Knight_amnt_B;
+  document.getElementById("Troopamnt_type_A_B").innerHTML = "Assasin: " + Assasin_amnt_B;
+  document.getElementById("Troopamnt_type_SM_B").innerHTML = "Sword Masters: " + SwordMaster_amnt_B;
+  document.getElementById("Troopamnt_type_N_R").innerHTML = Newbie_amnt_R + " :Newbies";
+  document.getElementById("Troopamnt_type_K_R").innerHTML = Knight_amnt_R + " :Knigts";
+  document.getElementById("Troopamnt_type_A_R").innerHTML = Assasin_amnt_R + " :Assasin";
+  document.getElementById("Troopamnt_type_SM_R").innerHTML = SwordMaster_amnt_R + " :Sword Masters";
 }, 1000);
 
+function Fight(){
+
+};
 //Cash library
 
 // other libraries

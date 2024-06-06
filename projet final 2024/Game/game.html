@@ -2,154 +2,150 @@
 
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta
-			name="viewport"
-			content="width=device-width, initial-scale=1.0"
-		/>
-		<title>Miragine Wars Remastered Game</title>
-		<link
-			rel="stylesheet"
-			href="Game.css"
-		/>
-		<script>
-			// Declare the variable in the HTML file
-			var gameStatus = "Stopped";
 
-			function GameLoad(x) {
-				if (x === "on") {
-					gameStatus = "Running";
-					console.log(gameStatus);
-				} else {
-					gameStatus = "Stopped";
-					console.log(gameStatus);
-				}
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Miragine Wars Remastered Game</title>
+	<link rel="stylesheet" href="Game.css" />
+	<script>
+		// Declare the variable in the HTML file
+		var gameStatus = "Stopped";
+
+		function GameLoad(x) {
+			if (x === "on") {
+				gameStatus = "Running";
+				console.log(gameStatus);
+			} else {
+				gameStatus = "Stopped";
+				console.log(gameStatus);
 			}
-		</script>
-	</head>
+		}
+	</script>
+</head>
 
-	<body onload="GameLoad('on')">
-		<script src="game.js"></script>
-		<table>
-			<thead>
-				<tr>
-					<th colspan="9">Game</th>
-				</tr>
-			</thead>
+<body onload="GameLoad('on')">
+	<script src="game.js"></script>
+	<table>
+		<thead>
 			<tr>
-				<th
-					id="players"
-					colspan="4"
-				>
-					Blue Team
-				</th>
-				<th></th>
-				<th
-					id="players"
-					colspan="4"
-				>
-					Red Team
-				</th>
+				<th colspan="9">Game</th>
 			</tr>
-			<tbody>
-				<tr>
-					<th>Gold Generation</th>
-					<th>Gold Ammount</th>
-					<th>Base Health</th>
-					<th>Troop Ammount</th>
-					<th></th>
-					<th>Troop Ammount</th>
-					<th>Base Health</th>
-					<th>Gold Ammount</th>
-					<th>Gold Generation</th>
-				</tr>
-				<tr>
-					<td id="moneylvl_blue">0</td>
-					<td id="money_blue">0</td>
-					<td id="base_hp_blue">0</td>
-					<td id="troop_blue">0</td>
-					<td></td>
-					<td id="troop_red">0</td>
-					<td id="base_hp_red">0</td>
-					<td id="money_red">0</td>
-					<td id="moneylvl_red">0</td>
-				</tr>
-				<tr>
-					<td><button onclick="moneyup_blue()">Upgrade money generation</button></td>
-					<td></td>
-					<td><button>Heal Base</button></td>
-					<td>
-						|
-						<p>V</p>
-					</td>
-					<td></td>
-					<td>
-						|
-						<p>V</p>
-					</td>
-					<td><button>Heal Base</button></td>
-					<td></td>
-					<td><button onclick="moneyup_red()">Upgrade money generation</button></td>
-				</tr>
-        <tr>
-          <td>Damage</td>
-          <td>Cost</td>
-          <td>health</td>
-          <td>Name</td>
-          <td> </td>
-          <td>Name</td>
-          <td>Health</td>
-          <td>Cost</td>
-          <td>Damage</td>
-        </tr>
-        <tr>
-          <td> </td>
-          <td> </td>
-          <td> </td>
-          <td>Newbie</td>
-          <td> </td>
-          <td>Newbie</td>
-          <td> </td>
-          <td> </td>
-          <td> </td>
-        </tr>
-        <tr>
-          <td> </td>
-          <td> </td>
-          <td> </td>
-          <td>Knight</td>
-          <td> </td>
-          <td>Knight</td>
-          <td> </td>
-          <td> </td>
-          <td> </td>
-        </tr>
-        <tr>
-          <td> </td>
-          <td> </td>
-          <td> </td>
-          <td>Assasin</td>
-          <td> </td>
-          <td>Assasin</td>
-          <td> </td>
-          <td> </td>
-          <td> </td>
-        </tr>
-        <tr>
-          <td> </td>
-          <td> </td>
-          <td> </td>
-          <td>Sword Master</td>
-          <td> </td>
-          <td>Sword Master</td>
-          <td> </td>
-          <td> </td>
-          <td> </td>
-        </tr>
-			</tbody>
-		</table>
-		<button onclick="ButtonTest()">Test it</button>
-		<button onclick="Moneyup()">Up gold gen</button>
-	</body>
+		</thead>
+		<tr>
+			<th id="players" colspan="4">
+				Blue Team
+			</th>
+			<th></th>
+			<th id="players" colspan="4">
+				Red Team
+			</th>
+		</tr>
+		<tbody>
+			<tr>
+				<th>Gold Generation level</th>
+				<th>Gold Ammount</th>
+				<th>Base Health</th>
+				<th>Total Troop Health</th>
+				<th></th>
+				<th>Total Troop Health</th>
+				<th>Base Health</th>
+				<th>Gold Ammount</th>
+				<th>Gold Generation</th>
+			</tr>
+			<tr>
+				<td id="moneylvl_blue">0</td>
+				<td id="money_blue">0</td>
+				<td id="base_hp_blue">0</td>
+				<td id="troop_blue">0</td>
+				<td></td>
+				<td id="troop_red">0</td>
+				<td id="base_hp_red">0</td>
+				<td id="money_red">0</td>
+				<td id="moneylvl_red">0</td>
+			</tr>
+			<tr>
+				<td><button onclick="moneyup_blue()" id="monup_b">Upgrade money generation</button></td>
+				<td>Lvl 0 - 5g/s | Lvl 1 - 10g/s | Lvl 2 - 15g/s | Lvl 3 - 20g/s | Lvl 4 - 25g/s | Lvl 5 - 30g/s</td>
+				<td><button>Heal Base</button></td>
+				<td>
+					<p id="Troopamnt_type_N_B">0</p>
+					<p id="Troopamnt_type_K_B">0</p>
+					<p id="Troopamnt_type_A_B">0</p>
+					<p id="Troopamnt_type_SM_B">0</p>
+				</td>
+				<td></td>
+				<td>
+					<p id="Troopamnt_type_N_R">0</p>
+					<p id="Troopamnt_type_K_R">0</p>
+					<p id="Troopamnt_type_A_R">0</p>
+					<p id="Troopamnt_type_SM_R">0</p>
+				</td>
+				<td><button>Heal Base</button></td>
+				<td>Lvl 0 - 5g/s | Lvl 1 - 10g/s | Lvl 2 - 15g/s | Lvl 3 - 20g/s | Lvl 4 - 25g/s | Lvl 5 - 30g/s</td>
+				<td><button onclick="moneyup_red()" id="monup_r">Upgrade money generation</button></td>
+			</tr>
+			<tr>
+				<th colspan="9">Troops</th>
+			</tr>
+			<tr>
+				<td>Damage</td>
+				<td>Cost</td>
+				<td>health</td>
+				<td>Name</td>
+				<td> </td>
+				<td>Name</td>
+				<td>Health</td>
+				<td>Cost</td>
+				<td>Damage</td>
+			</tr>
+			<tr>
+				<td>200</td>
+				<td><button onclick="BuyN_Blue()" id="costN_B">50</button></td>
+				<td>1000</td>
+				<td>Newbie</td>
+				<td> </td>
+				<td>Newbie</td>
+				<td>1000</td>
+				<td><button onclick="BuyN_Red()" id="costN_R">50</button></td>
+				<td>200</td>
+			</tr>
+			<tr>
+				<td>300</td>
+				<td><button onclick="BuyK_Blue()" id="costK_B">125</button></td>
+				<td>1500</td>
+				<td>Knight</td>
+				<td> </td>
+				<td>Knight</td>
+				<td>1500</td>
+				<td><button onclick="BuyK_Red()" id="costK_R">125</button></td>
+				<td>300</td>
+			</tr>
+			<tr>
+				<td>400</td>
+				<td><button onclick="BuyA_Blue()" id="costA_B">500</button></td>
+				<td>1250</td>
+				<td>Assasin</td>
+				<td> </td>
+				<td>Assasin</td>
+				<td>1250</td>
+				<td><button onclick="BuyA_Red()" id="costA_R">500</button></td>
+				<td>400</td>
+			</tr>
+			<tr>
+				<td>100</td>
+				<td><button onclick="BuySM_Blue()" id="costSM_B">1500</button></td>
+				<td>4000</td>
+				<td>Sword Master</td>
+				<td> </td>
+				<td>Sword Master</td>
+				<td>4000</td>
+				<td><button onclick="BuySM_Red()" id="costSM_R">1500</button></td>
+				<td>100</td>
+			</tr>
+		</tbody>
+	</table>
+	<button onclick="Fight()">Game unfinised Press This to Launch The Game with Current Troops</button>
+</body>
+
 </html>
